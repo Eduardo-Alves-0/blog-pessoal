@@ -1,8 +1,10 @@
 import { DeleteResult, Repository } from 'typeorm';
+import { TemaService } from '../../tema/service/tema.service';
 import { Postagem } from '../entities/postagem.entity';
 export declare class PostagemService {
     private postagemRepository;
-    constructor(postagemRepository: Repository<Postagem>);
+    private temaService;
+    constructor(postagemRepository: Repository<Postagem>, temaService: TemaService);
     findAll(): Promise<Postagem[]>;
     findById(id: number): Promise<Postagem>;
     findAllByTitulo(titulo: string): Promise<Postagem[]>;

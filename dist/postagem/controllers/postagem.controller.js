@@ -12,42 +12,42 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TemaController = void 0;
+exports.PostagemController = void 0;
 const common_1 = require("@nestjs/common");
-const tema_entity_1 = require("../../tema/entities/tema.entity");
-const tema_service_1 = require("../../tema/service/tema.service");
-let TemaController = class TemaController {
-    temaService;
-    constructor(temaService) {
-        this.temaService = temaService;
+const postagem_entity_1 = require("../entities/postagem.entity");
+const postagem_service_1 = require("../service/postagem.service");
+let PostagemController = class PostagemController {
+    postagemService;
+    constructor(postagemService) {
+        this.postagemService = postagemService;
     }
     findAll() {
-        return this.temaService.findAll();
+        return this.postagemService.findAll();
     }
     findById(id) {
-        return this.temaService.findById(id);
+        return this.postagemService.findById(id);
     }
-    findAllBydescricao(descricao) {
-        return this.temaService.findAllByDescricao(descricao);
+    findByTitulo(titulo) {
+        return this.postagemService.findAllByTitulo(titulo);
     }
-    create(tema) {
-        return this.temaService.create(tema);
+    create(postagem) {
+        return this.postagemService.create(postagem);
     }
-    update(tema) {
-        return this.temaService.update(tema);
+    update(postagem) {
+        return this.postagemService.update(postagem);
     }
     delete(id) {
-        return this.temaService.delete(id);
+        return this.postagemService.delete(id);
     }
 };
-exports.TemaController = TemaController;
+exports.PostagemController = PostagemController;
 __decorate([
     (0, common_1.Get)(),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], TemaController.prototype, "findAll", null);
+], PostagemController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('/:id'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
@@ -55,31 +55,31 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], TemaController.prototype, "findById", null);
+], PostagemController.prototype, "findById", null);
 __decorate([
-    (0, common_1.Get)('/descricao/:descricao'),
+    (0, common_1.Get)('/titulo/:titulo'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
-    __param(0, (0, common_1.Param)('descricao')),
+    __param(0, (0, common_1.Param)('titulo')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], TemaController.prototype, "findAllBydescricao", null);
+], PostagemController.prototype, "findByTitulo", null);
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.HttpCode)(common_1.HttpStatus.CREATED),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [tema_entity_1.Tema]),
+    __metadata("design:paramtypes", [postagem_entity_1.Postagem]),
     __metadata("design:returntype", Promise)
-], TemaController.prototype, "create", null);
+], PostagemController.prototype, "create", null);
 __decorate([
     (0, common_1.Put)(),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [tema_entity_1.Tema]),
+    __metadata("design:paramtypes", [postagem_entity_1.Postagem]),
     __metadata("design:returntype", Promise)
-], TemaController.prototype, "update", null);
+], PostagemController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     (0, common_1.HttpCode)(common_1.HttpStatus.NO_CONTENT),
@@ -87,9 +87,9 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
-], TemaController.prototype, "delete", null);
-exports.TemaController = TemaController = __decorate([
-    (0, common_1.Controller)('/temas'),
-    __metadata("design:paramtypes", [tema_service_1.TemaService])
-], TemaController);
+], PostagemController.prototype, "delete", null);
+exports.PostagemController = PostagemController = __decorate([
+    (0, common_1.Controller)('/postagens'),
+    __metadata("design:paramtypes", [postagem_service_1.PostagemService])
+], PostagemController);
 //# sourceMappingURL=postagem.controller.js.map

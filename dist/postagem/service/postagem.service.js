@@ -16,16 +16,20 @@ exports.PostagemService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
+const tema_service_1 = require("../../tema/service/tema.service");
 const postagem_entity_1 = require("../entities/postagem.entity");
 let PostagemService = class PostagemService {
     postagemRepository;
-    constructor(postagemRepository) {
+    temaService;
+    constructor(postagemRepository, temaService) {
         this.postagemRepository = postagemRepository;
+        this.temaService = temaService;
     }
     async findAll() {
         return await this.postagemRepository.find({
             relations: {
                 tema: true,
+                usuario: true,
             },
         });
     }
@@ -36,6 +40,7 @@ let PostagemService = class PostagemService {
             },
             relations: {
                 tema: true,
+                usuario: true,
             },
         });
         if (!postagem)
@@ -49,14 +54,17 @@ let PostagemService = class PostagemService {
             },
             relations: {
                 tema: true,
+                usuario: true,
             },
         });
     }
     async create(postagem) {
+        await this.temaService.findById(postagem.tema.id);
         return await this.postagemRepository.save(postagem);
     }
     async update(postagem) {
         await this.findById(postagem.id);
+        await this.temaService.findById(postagem.tema.id);
         return await this.postagemRepository.save(postagem);
     }
     async delete(id) {
@@ -68,6 +76,7 @@ exports.PostagemService = PostagemService;
 exports.PostagemService = PostagemService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(postagem_entity_1.Postagem)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        tema_service_1.TemaService])
 ], PostagemService);
 //# sourceMappingURL=postagem.service.js.map

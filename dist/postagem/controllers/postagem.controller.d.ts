@@ -1,12 +1,12 @@
-import { Tema } from '../../tema/entities/tema.entity';
-import { TemaService } from '../../tema/service/tema.service';
-export declare class TemaController {
-    private readonly temaService;
-    constructor(temaService: TemaService);
-    findAll(): Promise<Tema[]>;
-    findById(id: number): Promise<Tema>;
-    findAllBydescricao(descricao: string): Promise<Tema[]>;
-    create(tema: Tema): Promise<Tema>;
-    update(tema: Tema): Promise<Tema>;
+import { Postagem } from '../entities/postagem.entity';
+import { PostagemService } from '../service/postagem.service';
+export declare class PostagemController {
+    private readonly postagemService;
+    constructor(postagemService: PostagemService);
+    findAll(): Promise<Postagem[]>;
+    findById(id: number): Promise<Postagem>;
+    findByTitulo(titulo: string): Promise<Postagem[]>;
+    create(postagem: Postagem): Promise<Postagem>;
+    update(postagem: Postagem): Promise<Postagem>;
     delete(id: number): Promise<import("typeorm").DeleteResult>;
 }

@@ -9,10 +9,13 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { Tema } from '../entities/tema.entity';
 import { TemaService } from '../service/tema.service';
+import { JwtAuthGuard } from '../../auth/guard/jwt-Auth.Guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('/temas')
 export class TemaController {
   constructor(private readonly temaService: TemaService) {}
@@ -31,7 +34,7 @@ export class TemaController {
 
   @Get('/descricao/:descricao')
   @HttpCode(HttpStatus.OK)
-  findBydescricao(@Param('descricao') descricao: string): Promise<Tema[]> {
+  findAllBydescricao(@Param('descricao') descricao: string): Promise<Tema[]> {
     return this.temaService.findAllByDescricao(descricao);
   }
 

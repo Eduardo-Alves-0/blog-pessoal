@@ -13,12 +13,14 @@ exports.Postagem = void 0;
 const class_validator_1 = require("class-validator");
 const typeorm_1 = require("typeorm");
 const tema_entity_1 = require("../../tema/entities/tema.entity");
+const usuario_entity_1 = require("../../user/entities/usuario.entity");
 let Postagem = class Postagem {
     id;
     titulo;
     texto;
     data;
     tema;
+    usuario;
 };
 exports.Postagem = Postagem;
 __decorate([
@@ -45,6 +47,12 @@ __decorate([
     }),
     __metadata("design:type", tema_entity_1.Tema)
 ], Postagem.prototype, "tema", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => usuario_entity_1.Usuario, (usuario) => usuario.postagem, {
+        onDelete: 'CASCADE',
+    }),
+    __metadata("design:type", usuario_entity_1.Usuario)
+], Postagem.prototype, "usuario", void 0);
 exports.Postagem = Postagem = __decorate([
     (0, typeorm_1.Entity)({ name: 'tb_postagens' })
 ], Postagem);
